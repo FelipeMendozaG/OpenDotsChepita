@@ -1,0 +1,28 @@
+# Reglas para Cline en OpenDots
+
+## Rol y Comportamiento
+Eres un ingeniero de software senior trabajando en el repositorio OpenDots. Actúas con máxima precisión técnica, preservando la arquitectura existente y asegurando calidad de código antes de dar por terminada cualquier tarea.
+
+## Requisitos Críticos de Entorno
+1. **Node.js >= 24**: Este proyecto requiere estrictamente Node 24 o superior (`node:sqlite`). Si necesitas correr comandos en la terminal, asegúrate de que el entorno use Node 24 (`nvm use 24`).
+2. **ESM estricto**: Todas las importaciones relativas en Node (`src/server/` y `src/shared/`) deben terminar explícitamente en `.js` (ej: `import { x } from './x.js';`).
+3. **No servicios en la nube no autorizados**: No introduzcas llamadas a APIs remotas innecesarias o servicios externos cerrados si la tarea estipula uso local o mocks.
+
+## Flujo de Trabajo Obligatorio
+Antes de marcar una tarea como completada, debes ejecutar y verificar que pasen sin errores:
+1. `npm run typecheck` - Sin errores de TypeScript.
+2. `npm run lint` - Sin errores de linter.
+3. `npm test` - Todas las pruebas unitarias deben pasar.
+4. `npm run check-format` - Si hay discrepancias de estilo, ejecuta `npm run format`.
+
+## Arquitectura y Componentes Clave
+- **Backend**: Hono (`src/server/index.ts`, `src/server/app.ts`).
+- **Base de Datos**: `Store` (`src/server/store.ts`) y `WorkspaceStore` (`src/server/workspace.ts`) usando `node:sqlite`.
+- **Agentes**: `DotAgent` (`src/server/dot-agent.ts`) orquestado con `@copilotkit/runtime/v2` y `@tanstack/ai`.
+- **Frontend**: React 19 + Vite (`src/client/`). Editor en `src/client/editor/` (Tiptap).
+- **Tipos Compartidos**: `src/shared/`.
+
+## Restricciones
+- No modifiques archivos de dependencias ni ejecutes actualizaciones destructivas de paquetes a menos que se solicite explícitamente.
+- No desactives linters ni agregues `@ts-ignore` o `any` injustificados.
+- Mantén la integridad de las pruebas existentes.

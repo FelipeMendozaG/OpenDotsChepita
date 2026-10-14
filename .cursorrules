@@ -1,0 +1,8 @@
+# Reglas de Proyecto para Cursor en OpenDots
+
+- Entorno: Node.js >= 24 obligatorio (`node:sqlite`).
+- Tipo de proyecto: TypeScript ESM (`"type": "module"`).
+- Al generar código backend en `src/server/` o compartido en `src/shared/`, usa siempre extensiones `.js` en rutas de importación relativas.
+- Stack backend: Hono, CopilotKit runtime v2, AG-UI, TanStack AI, SQLite nativo (`node:sqlite`).
+- Stack frontend: React 19, Vite, Tiptap editor, Vanilla CSS (`style.css`, `editor.css`).
+- Verificaciones antes de terminar: `npm run typecheck`, `npm run lint`, `npm test`, `npm run check-format`.
