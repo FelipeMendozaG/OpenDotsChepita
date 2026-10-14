@@ -3,6 +3,7 @@ import { ChevronRight, FileText, Folder } from 'lucide-react';
 import type { Space } from '../shared/types';
 import type { Page } from '../server/pages';
 import { api } from './api';
+import { useTranslation } from './i18n';
 
 export function SpaceNav({
   space,
@@ -18,6 +19,7 @@ export function SpaceNav({
   const [expanded, setExpanded] = useState(false);
   const [pages, setPages] = useState<Page[]>([]);
   const [error, setError] = useState('');
+  const { t } = useTranslation();
   useEffect(() => {
     if (!expanded) return;
     let current = true;
@@ -90,7 +92,7 @@ export function SpaceNav({
             branches(null)
           )}
           {!error && !pages.length && (
-            <p className="sidebar-empty">No pages yet</p>
+            <p className="sidebar-empty">{t('noPagesYet')}</p>
           )}
         </div>
       )}

@@ -7,6 +7,7 @@ import {
   themePreference,
   type ThemePreference,
 } from './theme';
+import { useTranslation, type LanguagePreference } from './i18n';
 export type Dialog =
   | { type: 'space' }
   | { type: 'dot'; dot?: Dot; spaceId: string }
@@ -61,7 +62,13 @@ export function WorkspaceDialog({
   );
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const {
+    t,
+    preference: langPreference,
+    setLanguagePreference,
+  } = useTranslation();
   const [theme, setTheme] = useState(themePreference);
+  const [language, setLanguage] = useState<LanguagePreference>(langPreference);
   const container = useRef<HTMLElement>(null);
   useEffect(() => {
     const previous =
@@ -96,16 +103,16 @@ export function WorkspaceDialog({
   }, []);
   const title =
     dialog.type === 'space'
-      ? 'A space for something.'
+      ? t('titleSpace')
       : dialog.type === 'dot'
         ? dialog.dot
-          ? 'Make this Dot yours.'
-          : 'Meet your next specialist.'
+          ? t('titleEditDot')
+          : t('titleNewDot')
         : dialog.type === 'settings'
-          ? 'Your workspace, your rules.'
+          ? t('titleSettings')
           : dialog.type === 'memory'
-            ? 'Something to remember.'
-            : 'Let your Dot keep time.';
+            ? t('titleMemory')
+            : t('titleSchedule');
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <section
@@ -118,7 +125,7 @@ export function WorkspaceDialog({
       >
         <button
           className="modal-close icon-button"
-          aria-label="Close dialog"
+          aria-label={t('close')}
           onClick={onClose}
         >
           <X size={18} />
@@ -172,15 +179,14 @@ export function WorkspaceDialog({
               };
             }
             if (await mutate(path, method, body)) onClose();
-            else
-              setError('Could not save. Review the workspace error and retry.');
+            else setError(t('couldNotSave'));
             setBusy(false);
           }}
         >
           {(dialog.type === 'space' || dialog.type === 'dot') && (
             <>
               <label className="field-label" htmlFor="entity-name">
-                Name
+                {t('name')}
               </label>
               <input
                 id="entity-name"
@@ -195,12 +201,12 @@ export function WorkspaceDialog({
             <>
               <label className="field-label" htmlFor="entity-text">
                 {dialog.type === 'dot'
-                  ? 'Role instructions'
+                  ? t('fieldRoleInstructions')
                   : dialog.type === 'space'
-                    ? 'What belongs here?'
+                    ? t('fieldWhatBelongsHere')
                     : dialog.type === 'memory'
-                      ? 'Preference or context'
-                      : 'Task to revisit'}
+                      ? t('fieldPreferenceOrContext')
+                      : t('fieldTaskToRevisit')}
               </label>
               <textarea
                 id="entity-text"
@@ -209,20 +215,14 @@ export function WorkspaceDialog({
                 required={dialog.type !== 'space'}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                placeholder={
-                  dialog.type === 'dot'
-                    ? 'You are a thoughtful research partner. Compare evidence and be clear about uncertainty.'
-                    : ''
-                }
+                placeholder={dialog.type === 'dot' ? t('dotPlaceholder') : ''}
               />
             </>
           )}
           {dialog.type === 'dot' && (
             <fieldset className="space-access-fields">
-              <legend>Space access</legend>
-              <p className="muted">
-                Choose where this Dot can read and edit pages.
-              </p>
+              <legend>{t('spaceAccess')}</legend>
+              <p className="muted">{t('spaceAccessHint')}</p>
               {workspace.spaces.map((space) => (
                 <label className="permission-row" key={space.id}>
                   <input
@@ -241,7 +241,7 @@ export function WorkspaceDialog({
                 </label>
               ))}
               <label className="field-label" htmlFor="default-space">
-                Default destination for saved pages
+                {t('defaultSpaceDestination')}
               </label>
               <select
                 id="default-space"
@@ -250,7 +250,7 @@ export function WorkspaceDialog({
                 onChange={(event) => setDefaultSpace(event.target.value)}
               >
                 <option value="" disabled>
-                  Choose a Space
+                  {t('chooseASpace')}
                 </option>
                 {workspace.spaces
                   .filter((space) => spaceIds.includes(space.id))
@@ -271,11 +271,8 @@ export function WorkspaceDialog({
                   onChange={(e) => setResearch(e.target.checked)}
                 />
                 <span>
-                  <strong>Public-page research</strong>
-                  <small>
-                    Allow the server-side read-only browser tool. Global
-                    settings always take precedence.
-                  </small>
+                  <strong>{t('publicPageResearch')}</strong>
+                  <small>{t('publicPageResearchHint')}</small>
                 </span>
               </label>
               <label className="permission-row">
@@ -285,20 +282,17 @@ export function WorkspaceDialog({
                   onChange={(e) => setMemory(e.target.checked)}
                 />
                 <span>
-                  <strong>Use saved memories</strong>
-                  <small>
-                    Include your preferences in new turns. Changing permission
-                    stops active work.
-                  </small>
+                  <strong>{t('useSavedMemories')}</strong>
+                  <small>{t('useSavedMemoriesHint')}</small>
                 </span>
               </label>
             </>
           )}
           {dialog.type === 'dot' && (
             <fieldset className="space-access-fields">
-              <legend>Automatic Learning</legend>
+              <legend>{t('automaticLearning')}</legend>
               <label className="field-label" htmlFor="learning-container">
-                Learning container ID
+                {t('learningContainerId')}
               </label>
               <input
                 id="learning-container"
@@ -313,10 +307,7 @@ export function WorkspaceDialog({
                 }}
               />
               <p className="muted" id="learning-help">
-                Create this container in your Intelligence project first. New
-                conversations will contribute evidence to it. Leave blank to
-                keep new conversations out of Learning. Existing conversations
-                retain their original assignment.
+                {t('learningHelp')}
               </p>
               <label className="permission-row">
                 <input
@@ -326,13 +317,8 @@ export function WorkspaceDialog({
                   onChange={(event) => setSkillDelivery(event.target.checked)}
                 />
                 <span>
-                  <strong>Use published skills</strong>
-                  <small>
-                    Load reviewed skills from each conversation’s assigned
-                    container. Enable delivery in Intelligence too. Turning this
-                    off stops skill loading; it does not stop evidence
-                    collection.
-                  </small>
+                  <strong>{t('usePublishedSkills')}</strong>
+                  <small>{t('usePublishedSkillsHint')}</small>
                 </span>
               </label>
               <a
@@ -340,7 +326,7 @@ export function WorkspaceDialog({
                 target="_blank"
                 rel="noreferrer"
               >
-                Set up Learning and review skills ↗
+                {t('setupLearningLink')}
               </a>
             </fieldset>
           )}
@@ -350,28 +336,24 @@ export function WorkspaceDialog({
           {dialog.type === 'schedule' && (
             <>
               <label className="field-label" htmlFor="schedule-interval">
-                Repeat after each successful run
+                {t('repeatAfterRun')}
               </label>
               <select
                 id="schedule-interval"
                 value={interval}
                 onChange={(e) => setInterval(e.target.value)}
               >
-                <option value="60">Every minute (testing)</option>
-                <option value="3600">Every hour</option>
-                <option value="86400">Every day</option>
-                <option value="604800">Every week</option>
+                <option value="60">{t('repeatEveryMinute')}</option>
+                <option value="3600">{t('repeatEveryHour')}</option>
+                <option value="86400">{t('repeatEveryDay')}</option>
+                <option value="604800">{t('repeatEveryWeek')}</option>
               </select>
-              <p className="muted">
-                Runs on the server in this same conversation, even with the tab
-                closed. Failed or interrupted runs wait for manual retry. Review
-                completed work before retrying an interrupted run.
-              </p>
+              <p className="muted">{t('scheduleHint')}</p>
             </>
           )}
           {dialog.type === 'settings' && (
             <fieldset className="appearance-fields">
-              <legend>Appearance</legend>
+              <legend>{t('appearance')}</legend>
               <div className="segmented" role="radiogroup">
                 {(['system', 'light', 'dark'] as ThemePreference[]).map(
                   (option) => (
@@ -386,14 +368,47 @@ export function WorkspaceDialog({
                           setThemePreference(option);
                         }}
                       />
-                      <span>{option[0].toUpperCase() + option.slice(1)}</span>
+                      <span>
+                        {option === 'system'
+                          ? t('themeSystem')
+                          : option === 'light'
+                            ? t('themeLight')
+                            : t('themeDark')}
+                      </span>
                     </label>
                   ),
                 )}
               </div>
-              <p className="muted">
-                Saved in this browser. System follows your device.
-              </p>
+              <p className="muted">{t('appearanceHint')}</p>
+            </fieldset>
+          )}
+          {dialog.type === 'settings' && (
+            <fieldset className="appearance-fields">
+              <legend>{t('language')}</legend>
+              <div className="segmented" role="radiogroup">
+                {(
+                  [
+                    { id: 'system', label: t('languageSystem') },
+                    { id: 'en', label: 'English' },
+                    { id: 'es', label: 'Español' },
+                  ] as const
+                ).map((option) => (
+                  <label key={option.id}>
+                    <input
+                      type="radio"
+                      name="language"
+                      value={option.id}
+                      checked={language === option.id}
+                      onChange={() => {
+                        setLanguage(option.id);
+                        setLanguagePreference(option.id);
+                      }}
+                    />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
+              </div>
+              <p className="muted">{t('languageHint')}</p>
             </fieldset>
           )}
           {dialog.type === 'settings' && (
@@ -442,10 +457,7 @@ export function WorkspaceDialog({
             </div>
           )}
           {dialog.type === 'memory' && (
-            <p className="muted">
-              Memories are explicit preferences, not automatic learning. Avoid
-              secrets; enabled memories go to your model provider.
-            </p>
+            <p className="muted">{t('memoryHint')}</p>
           )}
           {error && (
             <p className="chat-error" role="alert">
@@ -453,7 +465,7 @@ export function WorkspaceDialog({
             </p>
           )}
           <button className="primary full" disabled={busy}>
-            {busy ? 'Saving…' : 'Save'}
+            {busy ? t('loading') : t('save')}
           </button>
         </form>
       </section>

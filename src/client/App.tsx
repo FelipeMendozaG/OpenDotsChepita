@@ -48,6 +48,7 @@ import { TaskRow } from './TaskPresentation';
 import { TaskActions } from './TaskActions';
 import { WorkspaceDialog, type Dialog } from './WorkspaceDialog';
 import { submitComposerOnEnter } from './chat-composer';
+import { useTranslation } from './i18n';
 
 function describeFailure(error: unknown, fallback: string) {
   return {
@@ -58,6 +59,7 @@ function describeFailure(error: unknown, fallback: string) {
 }
 
 export function App() {
+  const { t } = useTranslation();
   const [state, setState] = useState<State>();
   const [workspace, setWorkspace] = useState<WorkspaceState>();
   const [selectedDot, setSelectedDot] = useState('');
@@ -280,7 +282,7 @@ export function App() {
             onChange={(e) => setAuth(e.target.value)}
             required
           />
-          <button className="primary">Unlock OpenDots</button>
+          <button className="primary">{t('unlockOpenDots')}</button>
         </form>
         {error && (
           <p className="chat-error" role="alert">
@@ -294,11 +296,11 @@ export function App() {
     return (
       <main className="unlock">
         <Mascot state="working" />
-        <h1>Finding your dots…</h1>
+        <h1>{t('findingDots')}</h1>
         {error && (
           <>
             <p className="chat-error">{error}</p>
-            <button onClick={() => void refresh()}>Retry</button>
+            <button onClick={() => void refresh()}>{t('retry')}</button>
           </>
         )}
       </main>
@@ -323,14 +325,14 @@ export function App() {
           <PanelLeft size={18} />
         </button>
         <button
-          aria-label="New chat"
+          aria-label={t('newChat')}
           disabled={!configured}
           onClick={() => void newConversation()}
         >
           <Plus size={19} />
         </button>
         <button
-          aria-label="Open Spaces"
+          aria-label={t('spaces')}
           onClick={() => {
             if (workspace.spaces[0]) openPage(workspace.spaces[0].id);
           }}
@@ -342,7 +344,7 @@ export function App() {
         </button>
         <button
           className="rail-settings"
-          aria-label="Open settings"
+          aria-label={t('settings')}
           onClick={() => setDialog({ type: 'settings' })}
         >
           <Settings2 size={18} />
@@ -389,13 +391,13 @@ export function App() {
           onClick={() => void newConversation()}
         >
           <Plus size={17} />
-          <span>New chat</span>
+          <span>{t('newChat')}</span>
         </button>
         <div className="spaces-heading nav-label">
-          DOTS
+          {t('dots').toUpperCase()}
           <button
             className="icon-button"
-            aria-label="Create Dot"
+            aria-label={t('createDot')}
             onClick={() =>
               setDialog({ type: 'dot', spaceId: workspace.spaces[0].id })
             }
@@ -429,10 +431,10 @@ export function App() {
           ))}
         </nav>
         <div className="spaces-heading nav-label">
-          SPACES
+          {t('spaces').toUpperCase()}
           <button
             className="icon-button"
-            aria-label="Create Space"
+            aria-label={t('createSpace')}
             onClick={() => setDialog({ type: 'space' })}
           >
             <Plus size={14} />
@@ -480,7 +482,7 @@ export function App() {
             }}
           >
             <Clock3 size={17} />
-            <span>Scheduled & activity</span>
+            <span>{t('scheduledAndActivity')}</span>
             {state.tasks.length > 0 && <small>{state.tasks.length}</small>}
           </button>
           <button
@@ -491,7 +493,7 @@ export function App() {
             }}
           >
             <BookOpen size={17} />
-            <span>Memories</span>
+            <span>{t('memory')}</span>
             {state.memories.length > 0 && (
               <small>{state.memories.length}</small>
             )}
@@ -501,7 +503,7 @@ export function App() {
             onClick={() => setDialog({ type: 'settings' })}
           >
             <Settings2 size={17} />
-            <span>Settings & setup</span>
+            <span>{t('settingsAndSetup')}</span>
           </button>
           <a
             className="nav-item"
@@ -510,7 +512,7 @@ export function App() {
             rel="noreferrer"
           >
             <Code2 size={17} />
-            <span>Make it your own</span>
+            <span>{t('makeItYourOwn')}</span>
             <ArrowUpRight size={13} />
           </a>
           <div className="version">
