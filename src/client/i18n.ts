@@ -161,6 +161,87 @@ export const translations = {
     connectingStatus: 'Connecting…',
     noToolsOffered: 'This server offers no tools.',
     removeConnectionConfirm: 'Remove {name} from this Dot?',
+
+    // App & Workspace Shell
+    unlockTitle: 'Your own little corner.',
+    unlockPrompt:
+      'Enter the owner access token configured on this template’s server.',
+    ownerAccessToken: 'Owner access token',
+    tokenNotAccepted: 'Access token was not accepted.',
+    tokenSessionStorage: 'The token stays in this tab’s session storage.',
+    leaveDraftConfirm: 'Leave your unsaved page draft?',
+    couldNotConnect: 'Could not connect to the server.',
+    selfHosted: 'SELF-HOSTED',
+    setupRequired: 'SETUP REQUIRED',
+    resumeAllDots: 'Resume all Dots',
+    pauseAllDots: 'Pause all Dots',
+    resume: 'Resume',
+    pause: 'Pause',
+    hideComputer: 'Hide computer',
+    showComputer: 'Show computer',
+    dismissError: 'Dismiss error',
+    allDotsPaused:
+      'All Dots are paused. Active compute stops and scheduled tasks wait.',
+    openDotsHome: 'OpenDots home',
+    expandSidebar: 'Expand sidebar',
+    collapseSidebar: 'Collapse sidebar',
+    openNavigation: 'Open navigation',
+    closeNavigation: 'Close navigation',
+    activity: 'Activity',
+
+    // Chat Empty & Setup
+    editSpecialist: 'Edit specialist',
+    connectYourDot: 'Connect your Dot',
+    connectYourDotHint:
+      'Connect your model and conversation service in Settings to start chatting. Your Spaces and Dot preferences are ready to use.',
+    openSetupGuide: 'Open the setup guide',
+    firstConversationHint: 'Your first conversation starts after setup.',
+    startAConversation: 'Start a conversation',
+    textAndCallsContinuing: 'Text and calls, one continuing conversation',
+    startConversation: 'Start conversation',
+    starterThinkThrough: 'Help me think this through',
+    starterResearchPage: 'Research a public page',
+    starterMakePlan: 'Make a plan I can follow',
+    setupDetails: 'Setup details',
+    setupTextChatToBegin:
+      'Set up text chat to begin a persistent conversation.',
+
+    // Memories View
+    yourWorkspace: 'YOUR WORKSPACE',
+    memoriesSubtitle: 'Preferences you choose to share with your Dots.',
+    addMemory: 'Add memory',
+    availableToPermittedDots: 'Available to permitted Dots',
+    memoryUseDisabled: 'Memory use disabled',
+    editMemory: 'Edit memory',
+    deleteMemory: 'Delete memory',
+    memoriesEmptyTitle: 'A little context goes a long way.',
+    memoriesEmptyHint:
+      'Add a preference like “Keep my research briefs short.” You can change or remove it anytime.',
+
+    // Tasks & Activity View
+    tasksTitle: 'A little follow-through.',
+    tasksSubtitle:
+      'Scheduled turns run on the server in their original conversation.',
+    searchTasks: 'Search tasks',
+    findATask: 'Find a task…',
+    tasksEmptyTitle: 'Let a thought come back around.',
+    tasksEmptyHint:
+      'Open a conversation and use the clock button to schedule a server-side task.',
+    couldNotSaveGeneric: 'Could not save.',
+    newThought: 'A new thought',
+    couldNotCreateConversation: 'Could not create the conversation.',
+    workspaceNavigation: 'Workspace navigation',
+    openActivity: 'Open activity',
+    editDotSettings: 'Edit {name} settings',
+    openSourceTemplate: 'OPEN SOURCE TEMPLATE',
+    showNavigation: 'Show navigation',
+    hideNavigation: 'Hide navigation',
+    setupUsageNotice: 'Setup and usage metadata is collected by default.',
+    trackingOptOutDetails: 'Tracking and opt-out details',
+    messageDotPrompt: 'Message {name}…',
+    repeatIntervalPrompt: 'Repeat interval in minutes (0 removes the schedule)',
+    enterValidMinutes: 'Enter a valid number of minutes.',
+    savedRuns: 'saved runs',
   },
   es: {
     // Actions & Common
@@ -318,6 +399,91 @@ export const translations = {
     connectingStatus: 'Conectando…',
     noToolsOffered: 'Este servidor no ofrece herramientas.',
     removeConnectionConfirm: '¿Eliminar {name} de este Dot?',
+
+    // App & Workspace Shell
+    unlockTitle: 'Tu propio rincón.',
+    unlockPrompt:
+      'Introduce el token de acceso de propietario configurado en el servidor.',
+    ownerAccessToken: 'Token de acceso de propietario',
+    tokenNotAccepted: 'El token de acceso no fue aceptado.',
+    tokenSessionStorage:
+      'El token permanece en el almacenamiento de sesión de esta pestaña.',
+    leaveDraftConfirm: '¿Abandonar el borrador de página no guardado?',
+    couldNotConnect: 'No se pudo conectar con el servidor.',
+    selfHosted: 'AUTO-HOSPEDADO',
+    setupRequired: 'CONFIGURACIÓN REQUERIDA',
+    resumeAllDots: 'Reanudar todos los Dots',
+    pauseAllDots: 'Pausar todos los Dots',
+    resume: 'Reanudar',
+    pause: 'Pausar',
+    hideComputer: 'Ocultar computadora',
+    showComputer: 'Mostrar computadora',
+    dismissError: 'Descartar error',
+    allDotsPaused:
+      'Todos los Dots están pausados. La computación activa se detiene y las tareas programadas esperan.',
+    openDotsHome: 'Inicio de OpenDots',
+    expandSidebar: 'Expandir barra lateral',
+    collapseSidebar: 'Contraer barra lateral',
+    openNavigation: 'Abrir navegación',
+    closeNavigation: 'Cerrar navegación',
+    activity: 'Actividad',
+
+    // Chat Empty & Setup
+    editSpecialist: 'Editar especialista',
+    connectYourDot: 'Conecta tu Dot',
+    connectYourDotHint:
+      'Conecta tu modelo y servicio de conversación en Configuración para comenzar a chatear. Tus Espacios y preferencias de Dots están listos para usar.',
+    openSetupGuide: 'Abrir la guía de configuración',
+    firstConversationHint:
+      'Tu primera conversación comenzará después de la configuración.',
+    startAConversation: 'Iniciar una conversación',
+    textAndCallsContinuing: 'Texto y llamadas, una conversación continua',
+    startConversation: 'Iniciar conversación',
+    starterThinkThrough: 'Ayúdame a pensar en esto',
+    starterResearchPage: 'Investigar una página pública',
+    starterMakePlan: 'Haz un plan que pueda seguir',
+    setupDetails: 'Detalles de configuración',
+    setupTextChatToBegin:
+      'Configura el chat de texto para iniciar una conversación persistente.',
+
+    // Memories View
+    yourWorkspace: 'TU ESPACIO DE TRABAJO',
+    memoriesSubtitle: 'Preferencias que decides compartir con tus Dots.',
+    addMemory: 'Añadir memoria',
+    availableToPermittedDots: 'Disponible para Dots autorizados',
+    memoryUseDisabled: 'Uso de memoria desactivado',
+    editMemory: 'Editar memoria',
+    deleteMemory: 'Eliminar memoria',
+    memoriesEmptyTitle: 'Un poco de contexto marca la diferencia.',
+    memoriesEmptyHint:
+      'Añade una preferencia como “Mantén mis resúmenes breves”. Puedes cambiarla o eliminarla cuando quieras.',
+
+    // Tasks & Activity View
+    tasksTitle: 'Un poco de seguimiento.',
+    tasksSubtitle:
+      'Los turnos programados se ejecutan en el servidor en su conversación original.',
+    searchTasks: 'Buscar tareas',
+    findATask: 'Buscar una tarea…',
+    tasksEmptyTitle: 'Deja que una idea vuelva a su momento.',
+    tasksEmptyHint:
+      'Abre una conversación y usa el botón del reloj para programar una tarea en el servidor.',
+    couldNotSaveGeneric: 'No se pudo guardar.',
+    newThought: 'Una nueva idea',
+    couldNotCreateConversation: 'No se pudo crear la conversación.',
+    workspaceNavigation: 'Navegación del espacio de trabajo',
+    openActivity: 'Abrir actividad',
+    editDotSettings: 'Editar configuración de {name}',
+    openSourceTemplate: 'PLANTILLA DE CÓDIGO ABIERTO',
+    showNavigation: 'Mostrar navegación',
+    hideNavigation: 'Ocultar navegación',
+    setupUsageNotice:
+      'Los metadatos de configuración y uso se recopilan de forma predeterminada.',
+    trackingOptOutDetails: 'Detalles de seguimiento y exclusión voluntaria',
+    messageDotPrompt: 'Mensaje para {name}…',
+    repeatIntervalPrompt:
+      'Intervalo de repetición en minutos (0 elimina la programación)',
+    enterValidMinutes: 'Introduce un número válido de minutos.',
+    savedRuns: 'ejecuciones guardadas',
   },
 } as const;
 
@@ -378,10 +544,27 @@ export function subscribeLanguage(listener: () => void): () => void {
   };
 }
 
-export function t(key: TranslationKey, lang?: Language): string {
-  const activeLang = lang ?? currentLanguage();
+export function t(
+  key: TranslationKey,
+  paramsOrLang?: Record<string, string | number> | Language,
+  lang?: Language,
+): string {
+  const params =
+    typeof paramsOrLang === 'object' && paramsOrLang !== null
+      ? paramsOrLang
+      : undefined;
+  const activeLang =
+    typeof paramsOrLang === 'string'
+      ? paramsOrLang
+      : (lang ?? currentLanguage());
   const dict = translations[activeLang] ?? translations.en;
-  return dict[key] ?? translations.en[key] ?? key;
+  let str: string = dict[key] ?? translations.en[key] ?? key;
+  if (params) {
+    for (const [k, v] of Object.entries(params)) {
+      str = str.replaceAll(`{${k}}`, String(v));
+    }
+  }
+  return str;
 }
 
 export function useLanguage(): Language {
@@ -405,7 +588,8 @@ export function useTranslation() {
   const preference = useLanguagePreference();
 
   return {
-    t: (key: TranslationKey) => t(key, language),
+    t: (key: TranslationKey, params?: Record<string, string | number>) =>
+      t(key, params, language),
     language,
     preference,
     setLanguagePreference,

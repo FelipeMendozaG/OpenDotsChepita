@@ -75,3 +75,16 @@ it('translates keys according to active language', () => {
   expect(t('save', 'en')).toBe('Save');
   expect(t('save', 'es')).toBe('Guardar');
 });
+
+it('supports parameter interpolation in translations', () => {
+  expect(t('messageDotPrompt', { name: 'Atlas' }, 'en')).toBe('Message Atlas…');
+  expect(t('messageDotPrompt', { name: 'Atlas' }, 'es')).toBe(
+    'Mensaje para Atlas…',
+  );
+  expect(t('editDotSettings', { name: 'Atlas' }, 'en')).toBe(
+    'Edit Atlas settings',
+  );
+  expect(t('editDotSettings', { name: 'Atlas' }, 'es')).toBe(
+    'Editar configuración de Atlas',
+  );
+});
