@@ -16,6 +16,7 @@ import {
 } from '@copilotkit/runtime/v2';
 import { chat, maxIterations } from '@tanstack/ai';
 import { openaiCompatibleText } from '@tanstack/ai-openai/compatible';
+import { geminiCompatFetch } from './gemini-compat.js';
 import { learnedSkillTools, tanstackTools } from './tanstack-tools.js';
 import { Observable } from 'rxjs';
 import { z } from 'zod';
@@ -308,7 +309,8 @@ export class DotAgent extends AbstractAgent {
           apiKey: this.config.apiKey,
           baseURL: this.config.baseUrl ?? 'https://api.openai.com/v1',
           api: 'chat-completions',
-          maxRetries: 1,
+          maxRetries: 2,
+          fetch: geminiCompatFetch,
         });
         const serverTools = [
           ...tools,
